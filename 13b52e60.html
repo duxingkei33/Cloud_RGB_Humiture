@@ -104,10 +104,10 @@
             <table width="100%" height="114px">
                 <tr align="center">
                     <td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
-                    <td valign="middle" align="right">&nbsp;&nbsp;<span>内胆温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="tempid">28℃</span></td>
-                    <td valign="middle" align="middle">&nbsp;&nbsp;<span id="humiid">努力烧热水中...</span>
+                    <td valign="middle" align="right">&nbsp;&nbsp;<span>内胆温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_ntc_temperature_id">28℃</span></td>
+                    <td valign="middle" align="middle">&nbsp;&nbsp;<span id="ewh_work_status_id">努力烧热水中...</span>
 					</td>
-					<td valign="middle"align="left"><img id="switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="switchspan">开</span></td>
+					<td valign="middle"align="middle"><img id="ewh_power_status_btn" src="./image/03-turn-on.svg" alt=""><br/><span id="ewh_power_status_span">已经开机</span></td>
                 </tr>
             </table>
         </div>        
@@ -115,9 +115,9 @@
             <table width="100%">
                 <tr align="center" height="114px">
 					<td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
-                    <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="tempid">28℃</span></td>
-					<td valign="middle"><img id="switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
-					<td valign="middle"><img id="switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
+                    <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_temp_set_id">28℃</span></td>
+					<td valign="middle"><img id="switchbtn" src="./image/04-up.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
+					<td valign="middle"><img id="switchbtn" src="./image/04-down.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
                 </tr>                
             </table>
         </div>
@@ -217,6 +217,69 @@
                     $("#rgbimgid").attr("src", "./image/02-yellow.svg");
                 }
             }
+			//设定温度参数获取 和显示
+			 var  ewh_temp_set_val = msgjson.ewh_temp_set;
+            // console.log(' ' +  tempval);
+            if("undefined" != typeof(ewh_temp_set_val))
+			{
+              // 显示温度
+              $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+            }	
+			//内胆的温度显示
+			 var  ewh_ntc_temperature_val = msgjson.ewh_ntc_temperature;
+            if("undefined" != typeof(ewh_ntc_temperature_val))
+			{
+              // 显示温度
+              $("#ewh_ntc_temperature_id").text(ewh_temp_set_val+"℃");
+            }
+			//开关机状态显示
+			var  ewh_power_status_val = msgjson.ewh_power_status;
+            if("undefined" != typeof(ewh_power_status_val))
+			{
+				if(ewh_power_status_val ==true)
+				{
+              // 显示开关
+              $("#ewh_power_status_span").text(ewh_temp_set_val+"已经开机");
+				$("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
+			  }
+			  else
+			  {
+			     // 显示开关
+              $("#ewh_power_status_span").text("已经关机");
+				$("#ewh_power_status_btn").attr("src", "./image/03-turn-off.svg");
+
+			  }
+            }
+			//工作状态显示
+			 var  ewh_work_status_val = msgjson.ewh_work_status;
+            if("undefined" != typeof(ewh_work_status_val))
+			{
+				//  加热
+				//  保温
+				//停机上电后是停机1秒,然后转加热状态
+				//uint8_t ewh_work_status = 1;
+				#define EWH_WORK_STATUS_HEATING			(1)
+				#define EWH_WORK_STATUS_KEEP_WARM		(2)
+				#define EWH_WORK_STATUS_STOP				(3)
+
+				if(ewh_work_status_val ==1)
+				{
+					// 显示状态
+					$("#ewh_work_status_id").text("努力加热中...");
+				}				
+				else if(ewh_work_status_val ==2)
+				{
+					// 显示状态
+					$("#ewh_work_status_id").text("保温中...");
+				}
+				else if(ewh_work_status_val ==3)
+				{
+					// 显示状态
+					$("#ewh_work_status_id").text("已经停止工作");
+				}
+
+            }
+			
         }
 
         // 控制按钮显示的事件
