@@ -91,35 +91,38 @@
                 </tr>                
             </table>
         </div>
-        <div class="title">
-          <span>电热水器控制面板</span>
-        </div> 
+        <!--  -->
+		
+    </div>
+</div>
+
+<div class="content">
+    <div class="title">
+        <span>电热水器控制器</span>
+    </div>        
         <div class="switrgbhow">
-            <table width="100%">
-                <tr align="center" height="114px">
-                    <td valign="middle"><img id="ewh_power_switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="ewh_power_switchspan">开</span></td>
-                    <!-- <td valign="middle"><hr class="hrline" size="80" /></td> -->
-                    <td valign="middle" align="left">&nbsp;&nbsp;<span>工作状态</span><br/>&nbsp;&nbsp;<span class="tempcls" id="tempid">努力烧水中</span></td>
-                </tr>                
-            </table>
-        </div>
-   		
-        <div class="temphumishow">
-            <table width="100%" height="94px">
+            <table width="100%" height="114px">
                 <tr align="center">
                     <td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
-                    <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_temp_set_id">75℃</span></td>
-                    <td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
-                    <td valign="middle" align="left">&nbsp;&nbsp;<span>内胆温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_ntc_temp_id">28℃</span></td>
+                    <td valign="middle" align="left">&nbsp;&nbsp;<span>电热水器内胆温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="tempid">28℃</span></td>
+                    <td valign="middle" align="middle">&nbsp;&nbsp;
+						<span class="humicls" id="humiid">努力烧热水中...</span>
+					</td>
+					<td valign="middle"align="left"><img id="switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="switchspan">开</span></td>
                 </tr>
             </table>
         </div>        
-		
-        <!-- <div class="humihis">
-            <div id="device_id"></div>
-            <div id="debug"></div>
-        </div> -->
-    </div>
+        <div class="switrgbhow">
+            <table width="100%">
+                <tr align="center" height="114px">
+					<td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
+                    <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="tempid">28℃</span></td>
+					<td valign="middle"><img id="switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
+					<td valign="middle"><img id="switchbtn" src="./image/03-turn-on.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
+                </tr>                
+            </table>
+        </div>
+        
 </div>
 <script src="./js/mqttws31.js"></script>
 <script src="./js/jquery-2.1.3.js"></script>
@@ -215,10 +218,6 @@
                     $("#rgbimgid").attr("src", "./image/02-yellow.svg");
                 }
             }
-			//添加电热水器变量
-			 var ewh_temp_set = msgjson.ewh_temp_set;
-			 // 显示温度
-            $("#ewh_temp_set_id").text(ewh_temp_set+"℃");
         }
 
         // 控制按钮显示的事件
@@ -233,23 +232,6 @@
             }else{
                 commond = '{"device_switch":true}';
                 $("#switchbtn").attr("src", "./image/03-turn-on.svg");
-                $("#switchspan").text("开");
-            }
-            client.publish(topic, commond);
-        });
-
-        // 电热水器 控制按钮显示的事件
-        $("#ewh_power_switchbtn").click(function() {
-            var topic = device_id+'/in';
-            var commond;
-            var swtimg = $("#ewh_power_switchbtn").attr("src");
-            if("./image/03-turn-on.svg" == swtimg){
-                commond = '{"device_switch":false}';
-                $("#ewh_power_switchbtn").attr("src", "./image/03-turn-off.svg");
-                $("#switchspan").text("关");
-            }else{
-                commond = '{"device_switch":true}';
-                $("#ewh_power_switchbtn").attr("src", "./image/03-turn-on.svg");
                 $("#switchspan").text("开");
             }
             client.publish(topic, commond);
