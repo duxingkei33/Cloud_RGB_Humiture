@@ -230,7 +230,16 @@
 			{
               // 显示温度
               $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
-            }	
+            }
+		//内胆的温度显示
+			 var  ewh_ntc_temperature_val = msgjson.ewh_ntc_temperature;
+            if("undefined" != typeof(ewh_ntc_temperature_val))
+			{
+              // 显示温度
+              $("#ewh_ntc_temperature_id").text(ewh_ntc_temperature_val+"℃");
+            }
+
+	
         }
 
         // 控制按钮显示的事件
