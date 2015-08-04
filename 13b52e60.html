@@ -116,8 +116,8 @@
                 <tr align="center" height="114px">
 					<td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
                     <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_temp_set_id">28℃</span></td>
-					<td valign="middle"><img id="switchbtn" src="./image/04-up.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
-					<td valign="middle"><img id="switchbtn" src="./image/04-down.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
+					<td valign="middle"><img id="key_up_btn" src="./image/04-up.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
+					<td valign="middle"><img id="key_down_btn" src="./image/04-down.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
                 </tr>                
             </table>
         </div>
@@ -188,14 +188,15 @@
         // 消息到达
         // var msgindex = 1;
         var msgjson;
-        function onMessageArrived(message) {
+        function onMessageArrived(message) 
+		{
             // console.log(message.topic + ': ' +  message.payloadString);
             // if(msgindex > 12 ){
             //     msgindex =1;
             //     document.getElementById('debug').innerHTML = "";
             // }
             // msgindex++;
-            // console.log('设备上报:' +  message.payloadString);
+             console.log('设备上报:' +  message.payloadString);
             msgjson = $.parseJSON(message.payloadString);
             // console.log('温度 ' +  msgjson.dht11_temperature);
             var tempval = msgjson.dht11_temperature;
@@ -219,7 +220,7 @@
             }
 			//设定温度参数获取 和显示
 			 var  ewh_temp_set_val = msgjson.ewh_temp_set;
-            // console.log(' ' +  tempval);
+             console.log('ewh_temp_set_val ' +  ewh_temp_set_val);
             if("undefined" != typeof(ewh_temp_set_val))
 			{
               // 显示温度
@@ -227,6 +228,8 @@
             }	
 			//内胆的温度显示
 			 var  ewh_ntc_temperature_val = msgjson.ewh_ntc_temperature;
+			 console.log('ewh_ntc_temperature_val ' +  ewh_ntc_temperature_val);
+			 
             if("undefined" != typeof(ewh_ntc_temperature_val))
 			{
               // 显示温度
@@ -234,6 +237,7 @@
             }
 			//开关机状态显示
 			var  ewh_power_status_val = msgjson.ewh_power_status;
+			console.log('ewh_power_status_val ' +  ewh_power_status_val);
             if("undefined" != typeof(ewh_power_status_val))
 			{
 				if(ewh_power_status_val ==true)
@@ -252,6 +256,7 @@
             }
 			//工作状态显示
 			 var  ewh_work_status_val = msgjson.ewh_work_status;
+			 console.log('ewh_work_status_val ' +  ewh_work_status_val);
             if("undefined" != typeof(ewh_work_status_val))
 			{
 				//  加热
