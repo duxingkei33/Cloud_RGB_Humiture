@@ -96,6 +96,33 @@
     </div>
 </div>
 
+<div class="content">
+    <div class="title">
+        <span>电热水器控制器</span>
+    </div>        
+        <div class="switrgbhow">
+            <table width="100%" height="114px">
+                <tr align="center">
+                    <td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
+                    <td valign="middle" align="right">&nbsp;&nbsp;<span>内胆温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_ntc_temperature_id">28℃</span></td>
+                    <td valign="middle" align="middle">&nbsp;&nbsp;<span id="ewh_work_status_id">努力烧热水中...</span>
+					</td>
+					<td valign="middle"align="middle"><img id="ewh_power_status_btn" src="./image/03-turn-on.svg" alt=""><br/><span id="ewh_power_status_span">已经开机</span></td>
+                </tr>
+            </table>
+        </div>        
+        <div class="switrgbhow">
+            <table width="100%">
+                <tr align="center" height="114px">
+					<td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
+                    <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_temp_set_id">28℃</span></td>
+					<td valign="middle"><img id="key_up_btn" src="./image/04-up.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
+					<td valign="middle"><img id="key_down_btn" src="./image/04-down.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
+                </tr>                
+            </table>
+        </div>
+        
+</div>
 <script src="./js/mqttws31.js"></script>
 <script src="./js/jquery-2.1.3.js"></script>
 <script>
