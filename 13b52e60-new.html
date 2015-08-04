@@ -284,6 +284,25 @@
 				}
 
             }
+			//开关机状态显示
+			var  ewh_power_status_val = msgjson.ewh_power_status;
+			//console.log('ewh_power_status_val ' +  ewh_power_status_val);
+            if("undefined" != typeof(ewh_power_status_val))
+			{
+				if(ewh_power_status_val)
+				{
+              // 显示开关
+              $("#ewh_power_status_span").text(ewh_temp_set_val+"已经开机");
+				$("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
+			  }
+			  else
+			  {
+			     // 显示开关
+              $("#ewh_power_status_span").text("已经关机");
+				$("#ewh_power_status_btn").attr("src", "./image/03-turn-off.svg");
+
+			  }
+            }
 			
         }
 
