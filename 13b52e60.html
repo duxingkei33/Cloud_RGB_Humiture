@@ -221,10 +221,16 @@
             }
 			//设定温度参数获取 和显示
 			 //添加电热水器变量
-        var ewh_temp_set = msgjson.ewh_temp_set;
+       // var ewh_temp_set = msgjson.ewh_temp_set;
         // 显示温度
-        $("#ewh_temp_set_id").text(ewh_temp_set+"℃");
-			
+       // $("#ewh_temp_set_id").text(ewh_temp_set+"℃");
+			//设定温度参数获取 和显示
+			var  ewh_temp_set_val = msgjson.ewh_temp_set;
+            if("undefined" != typeof(ewh_temp_set_val))
+			{
+              // 显示温度
+              $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+            }	
         }
 
         // 控制按钮显示的事件
