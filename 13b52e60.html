@@ -219,7 +219,14 @@
                     $("#rgbimgid").attr("src", "./image/02-yellow.svg");
                 }
             }
-			
+			//设定温度参数获取 和显示
+			 var  ewh_temp_set_val = msgjson.ewh_temp_set;
+             console.log('ewh_temp_set_val ' +  ewh_temp_set_val);
+            if("undefined" != typeof(ewh_temp_set_val))
+			{
+              // 显示温度
+              $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+            }	
 			
 			
         }
