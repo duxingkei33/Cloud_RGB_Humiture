@@ -115,8 +115,8 @@
                 <tr align="center" height="114px">
 					<td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
                     <td valign="middle" align="left">&nbsp;&nbsp;<span>设定温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_temp_set_id">28℃</span></td>
-					<td valign="middle"><img id="key_up_btn" src="./image/04-up.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
-					<td valign="middle"><img id="key_down_btn" src="./image/04-down.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
+					<td valign="middle"><img id="ewh_key_up_btn" src="./image/04-up.svg" alt=""><br/><span id="switchspan">设定温度加</span></td>
+					<td valign="middle"><img id="ewh_key_down_btn" src="./image/04-down.svg" alt=""><br/><span id="switchspan">设定温度减</span></td>
                 </tr>                
             </table>
         </div>
@@ -329,6 +329,21 @@
                 $("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
                 $("#ewh_power_status_span").text("已经开机");
             }
+            client.publish(topic, commond);
+        });
+       // 电热水器按键加控制事件
+        $("#ewh_key_up_btn").click(function()
+       {
+            var topic = device_id+'/in';
+            var commond;
+			 // 显示温度
+			 //获取当前设定温度值
+			 var ewh_temp_set_val= $("#ewh_temp_set_id").val();
+			 ewh_temp_set_val =ewh_temp_set_val +1;
+           $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+			  
+            commond = '{"ewh_temp_set"'+':'+ewh_temp_set_val + '}';
+            //$("#ewh_power_status_span").text("已经关机");
             client.publish(topic, commond);
         });
 
