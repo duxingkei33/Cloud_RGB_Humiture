@@ -292,18 +292,42 @@
         }
 
         // 控制按钮显示的事件
-        $("#switchbtn").click(function() {
+        $("#switchbtn").click(function()
+       {
             var topic = device_id+'/in';
             var commond;
             var swtimg = $("#switchbtn").attr("src");
-            if("./image/03-turn-on.svg" == swtimg){
+            if("./image/03-turn-on.svg" == swtimg)
+			{
                 commond = '{"device_switch":false}';
                 $("#switchbtn").attr("src", "./image/03-turn-off.svg");
                 $("#switchspan").text("关");
-            }else{
+            }
+			else
+			{
                 commond = '{"device_switch":true}';
                 $("#switchbtn").attr("src", "./image/03-turn-on.svg");
                 $("#switchspan").text("开");
+            }
+            client.publish(topic, commond);
+        });       
+       // 电热水器开关控制事件
+        $("#ewh_power_status_btn").click(function()
+       {
+            var topic = device_id+'/in';
+            var commond;
+            var swtimg = $("#ewh_power_status_btn").attr("src");
+            if("./image/03-turn-on.svg" == swtimg)
+			{
+                commond = '{"ewh_power_status":false}';
+                $("#ewh_power_status_btn").attr("src", "./image/03-turn-off.svg");
+                $("#ewh_power_status_span").text("已经关机");
+            }
+			else
+			{
+                commond = '{"ewh_power_status":true}';
+                $("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
+                $("#ewh_power_status_span").text("已经开机");
             }
             client.publish(topic, commond);
         });
