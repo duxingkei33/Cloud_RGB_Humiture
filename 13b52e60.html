@@ -246,7 +246,7 @@
 				if(ewh_power_status_val)
 				{
               // 显示开关
-              $("#ewh_power_status_span").text(ewh_temp_set_val+"已经开机");
+              $("#ewh_power_status_span").text("已经开机");
 				$("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
 			  }
 			  else
@@ -256,6 +256,36 @@
 				$("#ewh_power_status_btn").attr("src", "./image/03-turn-off.svg");
 
 			  }
+            }
+			/////////////////////////////////////////////////
+			//工作状态显示
+			 var  ewh_work_status_val = msgjson.ewh_work_status;
+            if("undefined" != typeof(ewh_work_status_val))
+			{
+				//  加热
+				//  保温
+				//停机上电后是停机1秒,然后转加热状态
+				//uint8_t ewh_work_status = 1;
+				//#define EWH_WORK_STATUS_HEATING			(1)
+				//#define EWH_WORK_STATUS_KEEP_WARM		(2)
+				//#define EWH_WORK_STATUS_STOP				(3)
+
+				if(ewh_work_status_val ==1)
+				{
+					// 显示状态
+					$("#ewh_work_status_id").text("努力加热中...");
+				}				
+				else if(ewh_work_status_val ==2)
+				{
+					// 显示状态
+					$("#ewh_work_status_id").text("保温中...");
+				}
+				else if(ewh_work_status_val ==3)
+				{
+					// 显示状态
+					$("#ewh_work_status_id").text("已经停止工作");
+				}
+
             }
         }
 
