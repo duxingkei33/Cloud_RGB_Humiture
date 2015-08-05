@@ -338,8 +338,8 @@
             var commond;
 			 // 显示温度
 			 //获取当前设定温度值
-			 var ewh_temp_set_val= $("#ewh_temp_set_id").val();
-			 ewh_temp_set_val =ewh_temp_set_val +1;
+			 var ewh_temp_set_val= document.getElementById('ewh_temp_set_id').value;//$("#ewh_temp_set_id").val();
+			 ewh_temp_set_val =ewh_temp_set_val +5;
            $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
 			  
             commond = '{"ewh_temp_set"'+':'+ewh_temp_set_val + '}';
