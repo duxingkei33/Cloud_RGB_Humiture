@@ -105,9 +105,8 @@
                 <tr align="center">
                     <td valign="middle" align="right"><img src="./image/01-temperature.svg" alt=""></td>
                     <td valign="middle" align="right">&nbsp;&nbsp;<span>内胆温度</span><br/>&nbsp;&nbsp;<span class="tempcls" id="ewh_ntc_temperature_id">28℃</span></td>
-                    <td valign="middle" align="middle">&nbsp;&nbsp;<span id="ewh_work_status_id">努力烧热水中...</span>
-					</td>
-					<td valign="middle"align="middle"><img id="ewh_power_status_btn" src="./image/03-turn-on.svg" alt=""><br/><span id="ewh_power_status_span">已经开机</span></td>
+					<td valign="middle"align="middle"><img id="ewh_work_status_btn" src="./image/04-stop.svg" alt=""><br/><span id="ewh_work_status_id">努力烧热水中...</span></td>
+					<td valign="middle"align="middle"><img id="ewh_power_status_btn" src="./image/03-turn-on.svg" alt=""><br/><span id="ewh_power_status_span">已经开机</span></td><td valign="middle"align="middle"><img id="ewh_power_status_btn" src="./image/03-turn-on.svg" alt=""><br/><span id="ewh_power_status_span">已经开机</span></td>
                 </tr>
             </table>
         </div>        
@@ -274,16 +273,19 @@
 				{
 					// 显示状态
 					$("#ewh_work_status_id").text("努力加热中...");
+					$("#ewh_work_status_btn").attr("src", "./image/04-heating.svg");
 				}				
 				else if(ewh_work_status_val ==2)
 				{
 					// 显示状态
 					$("#ewh_work_status_id").text("保温中...");
+					$("#ewh_work_status_btn").attr("src", "./image/04-keep-warm.svg");
 				}
 				else if(ewh_work_status_val ==3)
 				{
 					// 显示状态
 					$("#ewh_work_status_id").text("已经停止工作");
+					$("#ewh_work_status_btn").attr("src", "./image/04-stop.svg");
 				}
 
             }
