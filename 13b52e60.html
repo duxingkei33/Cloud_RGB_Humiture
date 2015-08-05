@@ -125,6 +125,7 @@
 <script src="./js/mqttws31.js"></script>
 <script src="./js/jquery-2.1.3.js"></script>
 <script>
+     var sync_temp_set_flag=false;
     // 从url中获取某个参数的值
     function getParameterByName(name) {
         var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
@@ -226,9 +227,17 @@
 			//设定温度参数获取 和显示
 			var  ewh_temp_set_val = msgjson.ewh_temp_set;
             if("undefined" != typeof(ewh_temp_set_val))
-			{
-              // 显示温度
-              $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+			{	
+				//同步数据,改变后下一次收到的数据抛弃掉
+				if(sync_temp_set_flag==true)
+				{
+					sync_temp_set_flag=false;//同步数据,改变后下一次收到的数据抛弃掉
+				}
+				else
+				{
+					// 显示温度
+					$("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+				}
             }
 		//内胆的温度显示
 			 var  ewh_ntc_temperature_val = msgjson.ewh_ntc_temperature;
@@ -347,6 +356,7 @@
 				tmp = 10;
 			 }
            $("#ewh_temp_set_id").text(tmp+"℃");
+		   sync_temp_set_flag=true;//同步数据,改变后下一次收到的数据抛弃掉
 			  
             commond = '{"ewh_temp_set"'+':'+ tmp + '}';
             client.publish(topic, commond);
@@ -367,7 +377,7 @@
 				tmp = 75;
 			 }
            $("#ewh_temp_set_id").text(tmp+"℃");
-			  
+			  sync_temp_set_flag=true;//同步数据,改变后下一次收到的数据抛弃掉
             commond = '{"ewh_temp_set"'+':'+ tmp + '}';
             client.publish(topic, commond);
         });
