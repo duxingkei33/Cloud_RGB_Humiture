@@ -339,10 +339,13 @@
 			 // 显示温度
 			 //获取当前设定温度值
 			 var ewh_temp_set_val= $("#ewh_temp_set_id").text();//document.getElementById('ewh_temp_set_id').value;//
-			 ewh_temp_set_val = '5' + ewh_temp_set_val;
-           $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+			 //强制转换成INT
+			 var tmp=parseInt(ewh_temp_set_val);
+			 tmp = tmp +5;
+			 //ewh_temp_set_val = '5' + ewh_temp_set_val;
+           $("#ewh_temp_set_id").text(tmp+"℃");
 			  
-            commond = '{"ewh_temp_set"'+':'+'30' + '}';
+            commond = '{"ewh_temp_set"'+':'+ tmp + '}';
             client.publish(topic, commond);
         });
        // 电热水器按键减控制事件
