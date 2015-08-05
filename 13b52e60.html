@@ -338,12 +338,25 @@
             var commond;
 			 // 显示温度
 			 //获取当前设定温度值
-			 var ewh_temp_set_val= document.getElementById('ewh_temp_set_id').value;//$("#ewh_temp_set_id").val();
-			 ewh_temp_set_val =ewh_temp_set_val +5;
+			 var ewh_temp_set_val= $("#ewh_temp_set_id").text();//document.getElementById('ewh_temp_set_id').value;//
+			 ewh_temp_set_val = '5' + ewh_temp_set_val;
            $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
 			  
-            commond = '{"ewh_temp_set"'+':'+ewh_temp_set_val + '}';
-            //$("#ewh_power_status_span").text("已经关机");
+            commond = '{"ewh_temp_set"'+':'+'30' + '}';
+            client.publish(topic, commond);
+        });
+       // 电热水器按键减控制事件
+        $("#ewh_key_dwon_btn").click(function()
+       {
+            var topic = device_id+'/in';
+            var commond;
+			 // 显示温度
+			 //获取当前设定温度值
+			 var ewh_temp_set_val= $("#ewh_temp_set_id").text();//document.getElementById('ewh_temp_set_id').value;//
+			 ewh_temp_set_val = '1' + ewh_temp_set_val;
+           $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+			  
+            commond = '{"ewh_temp_set"'+':'+'70' + '}';
             client.publish(topic, commond);
         });
 
