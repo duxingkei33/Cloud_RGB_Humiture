@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <title>设备联动</title>
+    <title>设备联动-简易控制电热水器</title>
     <style>
         *{margin:0px;padding:0px;}
         body{
@@ -342,7 +342,10 @@
 			 //强制转换成INT
 			 var tmp=parseInt(ewh_temp_set_val);
 			 tmp = tmp +5;
-			 //ewh_temp_set_val = '5' + ewh_temp_set_val;
+			 if(tmp >75) 
+			 {
+				tmp = 10;
+			 }
            $("#ewh_temp_set_id").text(tmp+"℃");
 			  
             commond = '{"ewh_temp_set"'+':'+ tmp + '}';
@@ -356,10 +359,16 @@
 			 // 显示温度
 			 //获取当前设定温度值
 			 var ewh_temp_set_val= $("#ewh_temp_set_id").text();//document.getElementById('ewh_temp_set_id').value;//
-			 ewh_temp_set_val = '1' + ewh_temp_set_val;
-           $("#ewh_temp_set_id").text(ewh_temp_set_val+"℃");
+			 //强制转换成INT
+			 var tmp=parseInt(ewh_temp_set_val);
+			 tmp = tmp -5;
+			 if(tmp < 10) 
+			 {
+				tmp = 75;
+			 }
+           $("#ewh_temp_set_id").text(tmp+"℃");
 			  
-            commond = '{"ewh_temp_set"'+':'+'70' + '}';
+            commond = '{"ewh_temp_set"'+':'+ tmp + '}';
             client.publish(topic, commond);
         });
 
