@@ -224,19 +224,27 @@
 			var  ewh_power_status_val = msgjson.ewh_power_status;
             if("undefined" != typeof(ewh_power_status_val))
 			{
-				if(ewh_power_status_val)
+			//同步数据,改变后下一次收到的数据抛弃掉
+				if(sync_temp_set_flag==true)
 				{
-              // 显示开关
-              $("#ewh_power_status_span").text("已经开机");
-				$("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
-			  }
-			  else
-			  {
-			     // 显示开关
-              $("#ewh_power_status_span").text("已经关机");
-				$("#ewh_power_status_btn").attr("src", "./image/03-turn-off.svg");
+					sync_temp_set_flag=false;
+				}
+				else
+				{
+					if(ewh_power_status_val)
+					{
+				  // 显示开关
+				  $("#ewh_power_status_span").text("已经开机");
+					$("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
+				  }
+				  else
+				  {
+					 // 显示开关
+				  $("#ewh_power_status_span").text("已经关机");
+					$("#ewh_power_status_btn").attr("src", "./image/03-turn-off.svg");
 
-			  }
+				  }
+				}
             }
 			/////////////////////////////////////////////////
 			//工作状态显示
