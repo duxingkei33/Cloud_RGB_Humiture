@@ -320,6 +320,8 @@
                 $("#ewh_power_status_btn").attr("src", "./image/03-turn-on.svg");
                 $("#ewh_power_status_span").text("已经开机");
             }
+			//按下后的首次收到的数据丢弃掉~~
+			sync_temp_set_flag=true;
             client.publish(topic, commond);
         });
        // 电热水器按键加控制事件
